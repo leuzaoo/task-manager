@@ -1,5 +1,5 @@
-"use client"
-import { createContext, useState, useContext } from "react";
+"use client";
+import React, { createContext, useState, useContext } from "react";
 import themes from "./themes";
 
 export const GlobalContext = createContext();
