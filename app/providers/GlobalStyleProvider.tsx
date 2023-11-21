@@ -8,7 +8,10 @@ interface Props {
 }
 
 const GlobalStyles = styled.div`
-  background-color: red;
+  padding: 2.5rem;
+  display: flex;
+  gap: 2.5rem;
+  height: 100vh;
 `;
 
 export default function GlobalStyleProvider({ children }: Props) {
