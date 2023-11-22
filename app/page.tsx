@@ -1,5 +1,5 @@
-import Image from "next/image";
+import Task from "./components/card-task";
 
 export default function Home() {
-  return <main>Content</main>;
+  return <Task />;
 }

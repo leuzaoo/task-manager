@@ -1,6 +1,7 @@
 "use client";
 import { useGlobalState } from "@/app/context/globalProvider";
 import { usePathname, useRouter } from "next/navigation";
+import { logout } from "@/app/utils/Icons";
 import styled from "styled-components";
 import menu from "@/app/utils/menu";
 import Image from "next/image";
@@ -35,7 +36,7 @@ export default function Sidebar() {
           const link = item.link;
           return (
             <li
-              className={`nav-item ${pathname === link ? "active" : ""}`}
+              className={`nav__item ${pathname === link ? "active" : ""}`}
               onClick={() => {
                 handleClick(item.link);
               }}
@@ -46,7 +47,7 @@ export default function Sidebar() {
           );
         })}
       </ul>
-      <button></button>
+      <button>Sair {logout}</button>
     </SidebarStyled>
   );
 }
@@ -67,7 +68,7 @@ const SidebarStyled = styled.nav`
     padding: 1rem 0.8rem;
     position: relative;
     border-radius: 1rem;
-    background-color: #333;
+    background-color: #131313;
     cursor: pointer;
     font-weight: 500;
     color: ${(props) => props.theme.colorGrey0};
@@ -75,9 +76,109 @@ const SidebarStyled = styled.nav`
     flex-direction: column;
     align-items: center;
 
-    .image img {
-      margin: 0 auto;
-      border-radius: 100%;
+    .profile__overlay {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      p {
+        font-weight: 300;
+      }
+
+      .image {
+        flex-shrink: 0;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      img {
+        margin: 0 auto;
+        border-radius: 100%;
+        transition: all 0.5s ease;
+      }
     }
+  }
+
+  .nav__items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav__item {
+    position: relative;
+    padding: 1rem 0rem 1rem 2rem;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    cursor: pointer;
+    align-items: center;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background-color: ${(props) => props.theme.activeNavLinkHover};
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      right: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background-color: ${(props) => props.theme.borderSelectedPage};
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+
+    a {
+      font-weight: 500;
+      transition: all 0.3s ease-in-out;
+      z-index: 2;
+      line-height: 0;
+    }
+
+    i {
+      display: flex;
+      align-items: center;
+      color: ${(props) => props.theme.colorIcons};
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .active {
+    background-color: ${(props) => props.theme.activeNavLink};
+
+    i,
+    a {
+      color: ${(props) => props.theme.colorIcons2};
+    }
+  }
+
+  .active::before {
+    width: 0.3rem;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: red;
+    max-width: max-content;
+    margin: 0 auto;
+    padding: 8px 24px;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 1rem;
   }
 `;
