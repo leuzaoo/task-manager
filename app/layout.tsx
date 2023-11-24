@@ -32,7 +32,7 @@ export default function RootLayout({
             referrerPolicy="no-referrer"
           />
         </head>
-        <body className={inter.className}>
+        <body className={inter.className} suppressHydrationWarning={true}>
           <ContextProvider>
             <GlobalStyleProvider>
               {userId && <Sidebar />}
