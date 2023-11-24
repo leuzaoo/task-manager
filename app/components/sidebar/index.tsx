@@ -36,6 +36,7 @@ export default function Sidebar() {
           const link = item.link;
           return (
             <li
+              key={item.id}
               className={`nav__item ${pathname === link ? "active" : ""}`}
               onClick={() => {
                 handleClick(item.link);

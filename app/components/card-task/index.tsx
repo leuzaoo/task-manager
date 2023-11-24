@@ -2,12 +2,17 @@
 import { useGlobalState } from "@/app/context/globalProvider";
 import React from "react";
 import styled from "styled-components";
+import CreateContent from "../modals/CreateContent";
 
 type Props = {};
 
 export default function Task({}: Props) {
   const { theme } = useGlobalState();
-  return <TaskStyled theme={theme}>Tasks</TaskStyled>;
+  return (
+    <TaskStyled theme={theme}>
+      <CreateContent />
+    </TaskStyled>
+  );
 }
 
 const TaskStyled = styled.main`

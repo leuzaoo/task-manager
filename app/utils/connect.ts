@@ -1,9 +1,9 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
-  prisma: new PrismaClient();
+  prisma = new PrismaClient();
 } else {
   // @ts-ignore
   if (!global.prisma) {
@@ -13,5 +13,5 @@ if (process.env.NODE_ENV === "production") {
   // @ts-ignore
   prisma = global.prisma;
 }
-// @ts-ignore
+
 export default prisma;
