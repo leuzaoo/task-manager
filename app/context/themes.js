@@ -27,6 +27,7 @@ const themes = [
     colorGrey4: "#454e56",
     colorGrey5: "#2a2e35",
     colorGrey6: "#12181b",
+    colorGrey7: "#565656",
     colorWhite: "#fff",
     colorPrimaryGreen: "#6FCF97",
     borderColor: "rgba(249,249,249, 0.08)",
@@ -73,6 +74,7 @@ const themes = [
     colorGrey4: "#454e56",
     colorGrey5: "#2a2e35",
     colorGrey6: "#12181b",
+    colorGrey7: "#565656",
     colorWhite: "#fff",
     buttonGradient1:
       "linear-gradient(110.42deg, rgba(107, 190, 146, 0.7) 29.2%, rgba(245, 102, 146, 0.7) 63.56%)",

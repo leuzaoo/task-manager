@@ -1,11 +1,12 @@
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider";
 import { ClerkProvider, auth } from "@clerk/nextjs";
+import { Inter, Rokkitt } from "next/font/google";
 import Sidebar from "./components/sidebar";
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
+const rokkitt = Rokkitt({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +33,10 @@ export default function RootLayout({
             referrerPolicy="no-referrer"
           />
         </head>
-        <body className={inter.className} suppressHydrationWarning={true}>
+        <body
+          className={`text-xl ${rokkitt.className}`}
+          suppressHydrationWarning={true}
+        >
           <ContextProvider>
             <GlobalStyleProvider>
               {userId && <Sidebar />}

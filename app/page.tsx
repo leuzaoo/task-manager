@@ -1,5 +1,9 @@
+"use client";
+import { useGlobalState } from "./context/globalProvider";
 import Task from "./components/card-task";
 
 export default function Home() {
-  return <Task />;
+  const { tasks } = useGlobalState();
+
+  return <Task title="Todas as Tarefas" tasks={tasks} />;
 }

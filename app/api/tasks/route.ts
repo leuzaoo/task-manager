@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     const { title, description, date, completed, important } = await req.json();
     if (!title || !description || !date) {
       return NextResponse.json({
-        error: "Os campos: Título, Descrição e Data são obrigatórios.",
+        error: "Os campos de 'Título, Descrição e Data' são obrigatórios.",
         status: 400,
       });
     }
@@ -35,6 +35,8 @@ export async function POST(req: Request) {
       },
     });
 
+    console.log("TASK Created: ", task);
+
     return NextResponse.json(task);
   } catch (error) {
     console.log("Error creating task:", error);
@@ -44,6 +46,22 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
+    const { userId } = auth();
+
+    if (!userId) {
+      return NextResponse.json({
+        error: "Faça login e tente novamente.",
+        status: 401,
+      });
+    }
+    const tasks = await prisma.task.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    console.log("TASKS: ", tasks);
+    return NextResponse.json(tasks);
   } catch (error) {
     console.log("Error getting tasks:", error);
     return NextResponse.json({ error: "Error updating task", status: 500 });

@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function CreateContent() {
   const [title, setTitle] = useState("");
@@ -30,8 +32,33 @@ export default function CreateContent() {
     }
   };
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const task = {
+      title,
+      description,
+      date,
+      completed,
+      important,
+    };
+
+    try {
+      const res = await axios.post("/api/tasks", task);
+
+      if (res.data.error) {
+        toast.error(res.data.error);
+      }
+
+      toast.success("Tarefa criada.");
+    } catch (error) {
+      toast.error("Algo de errado não está certo.");
+      console.log(error);
+    }
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h1>Crie sua tarefa.</h1>
 
       <div className="input__control">
@@ -93,6 +120,6 @@ export default function CreateContent() {
       <div className="submit-btn">
         <button type="submit">Submit</button>
       </div>
-    </>
+    </form>
   );
 }
