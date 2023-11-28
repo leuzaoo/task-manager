@@ -1,13 +1,12 @@
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider";
 import { ClerkProvider, auth } from "@clerk/nextjs";
-import { Inter, Rokkitt } from "next/font/google";
+import { Rokkitt } from "next/font/google";
 import Sidebar from "./components/sidebar";
 import type { Metadata } from "next";
 import "./globals.css";
 
 const rokkitt = Rokkitt({ subsets: ["latin"] });
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Minhas Tarefas",

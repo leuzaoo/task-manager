@@ -12,11 +12,15 @@ export default function ContextProvider({ children }: Props) {
   React.useEffect(() => {
     setTimeout(() => {
       setIsReady(true);
-    }, 200);
+    }, 1500);
   }, []);
 
   if (!isReady) {
-    return null;
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <span className="loader" />
+      </div>
+    );
   }
 
   return (

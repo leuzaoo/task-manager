@@ -2,12 +2,14 @@
 import { useGlobalState } from "@/app/context/globalProvider";
 import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/app/utils/Icons";
+import { useClerk } from "@clerk/nextjs";
 import styled from "styled-components";
 import menu from "@/app/utils/menu";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Sidebar() {
+  const { signOut } = useClerk();
   const { theme } = useGlobalState();
   const router = useRouter();
   const pathname = usePathname();
@@ -48,7 +50,9 @@ export default function Sidebar() {
           );
         })}
       </ul>
-      <button>Sair {logout}</button>
+      <button onClick={() => signOut(() => router.push("/signin"))}>
+        Sair {logout}
+      </button>
     </SidebarStyled>
   );
 }
