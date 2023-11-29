@@ -42,3 +42,14 @@ body {
     transform: rotate(360deg);
   }
 }
+
+textarea,
+input {
+  color: #181818;
+  padding-left: 8px;
+}
+
+textarea::placeholder,
+input::placeholder {
+  @apply text-neutral-400;
+}
