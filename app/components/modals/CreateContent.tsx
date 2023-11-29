@@ -117,7 +117,7 @@ export default function CreateContent() {
           onChange={handleChange("important")}
         />
       </div>
-      <div className="submit-btn">
+      <div className="max-w-max bg-green-700 py-1 px-4 rounded-md">
         <button type="submit">Submit</button>
       </div>
     </form>

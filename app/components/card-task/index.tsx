@@ -1,5 +1,6 @@
 "use client";
 import { useGlobalState } from "@/app/context/globalProvider";
+import CreateContent from "../modals/CreateContent";
 import styled from "styled-components";
 import React from "react";
 import TaskItem from "@/app/item-task";
@@ -14,10 +15,12 @@ interface Props {
 }
 
 export default function Task({ title, tasks }: Props) {
-  const { theme } = useGlobalState();
+  const { theme, isLoading } = useGlobalState();
   return (
     <TaskStyled theme={theme}>
       <h1 className={`page__title ${salsa.className}`}>{title}</h1>
+      <CreateContent />
+
       <div className="tasks grid">
         {tasks.map((task) => (
           <TaskItem
