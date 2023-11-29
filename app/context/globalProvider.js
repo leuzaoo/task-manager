@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useState, useContext } from "react";
+import { toast } from "react-hot-toast";
 import { useUser } from "@clerk/nextjs";
 import themes from "./themes";
 import axios from "axios";
@@ -17,11 +18,21 @@ export const GlobalProvider = ({ children }) => {
     setIsLoading(true);
     try {
       const res = await axios.get("/api/tasks");
-
       setTasks(res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const deleteTask = async (id) => {
+    try {
+      const res = await axios.delete(`/api/tasks/${id}`);
+      toast.success("Tarefa deletada com sucesso.");
+      allTasks();
+    } catch (error) {
+      console.log(error);
+      toast.error("Algo está errado.");
     }
   };
 
@@ -35,6 +46,8 @@ export const GlobalProvider = ({ children }) => {
       value={{
         theme,
         tasks,
+        deleteTask,
+        isLoading,
       }}
     >
       <GlobalUpdateContext.Provider value={{}}>

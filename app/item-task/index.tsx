@@ -23,7 +23,7 @@ export default function TaskItem({
   isCompleted,
   id,
 }: Props) {
-  const { theme } = useGlobalState();
+  const { theme, deleteTask } = useGlobalState();
 
   return (
     <CardTask theme={theme}>
@@ -38,7 +38,14 @@ export default function TaskItem({
         )}
         <div className="buttons">
           <button className="edit">{edit}</button>
-          <button className="delete">{trash}</button>
+          <button
+            className="delete"
+            onClick={() => {
+              deleteTask(id);
+            }}
+          >
+            {trash}
+          </button>
         </div>
       </div>
     </CardTask>
