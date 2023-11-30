@@ -47,6 +47,7 @@ textarea,
 input {
   color: #181818;
   padding-left: 8px;
+  border-radius: 0.5rem;
 }
 
 textarea::placeholder,

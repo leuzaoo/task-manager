@@ -19,11 +19,16 @@ export const GlobalProvider = ({ children }) => {
     try {
       const res = await axios.get("/api/tasks");
       setTasks(res.data);
+      console.log(res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const completedTasks = tasks.filter((task) => task.isCompleted === true);
+  const importantTasks = tasks.filter((task) => task.isImportant === true);
+  const incompleteTasks = tasks.filter((task) => task.isCompleted === false);
 
   const deleteTask = async (id) => {
     try {
@@ -31,7 +36,6 @@ export const GlobalProvider = ({ children }) => {
       toast.success("Tarefa deletada com sucesso.");
       allTasks();
     } catch (error) {
-      console.log(error);
       toast.error("Algo está errado.");
     }
   };
@@ -48,6 +52,9 @@ export const GlobalProvider = ({ children }) => {
         tasks,
         deleteTask,
         isLoading,
+        completedTasks,
+        importantTasks,
+        incompleteTasks,
       }}
     >
       <GlobalUpdateContext.Provider value={{}}>

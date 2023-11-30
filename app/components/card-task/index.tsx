@@ -20,7 +20,6 @@ export default function Task({ title, tasks }: Props) {
     <TaskStyled theme={theme}>
       <h1 className={`page__title ${salsa.className}`}>{title}</h1>
       <CreateContent />
-
       <div className="tasks grid">
         {tasks.map((task) => (
           <TaskItem
@@ -28,7 +27,7 @@ export default function Task({ title, tasks }: Props) {
             title={task.title}
             description={task.description}
             date={task.date}
-            isCompleted={task.completed}
+            isCompleted={task.isCompleted}
             id={task.id}
           />
         ))}

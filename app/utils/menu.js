@@ -11,7 +11,7 @@ const menu = [
     id: 2,
     title: "Importante",
     icon: list,
-    link: "/importante",
+    link: "/important",
   },
   {
     id: 3,
@@ -21,9 +21,9 @@ const menu = [
   },
   {
     id: 4,
-    title: "Urgente",
+    title: "Não finalizadas",
     icon: todo,
-    link: "/urgente",
+    link: "/incompleted",
   },
 ];
 

@@ -31,10 +31,10 @@ export default function TaskItem({
       <p className={`description ${rokkitt.className}`}>{description}</p>
       <p className="date">Finalizar dia: {formatDate(date)}</p>
       <div className="task__footer">
-        {!isCompleted ? (
-          <button className="completed">Finalizado</button>
+        {isCompleted ? (
+          <button className="card completed bg-green-500">Finalizado</button>
         ) : (
-          <button className="incompleted">Não finalizado</button>
+          <button className="card incompleted">Não finalizado</button>
         )}
         <div className="buttons">
           <button className="edit">{edit}</button>
@@ -53,8 +53,8 @@ export default function TaskItem({
 }
 
 const CardTask = styled.div`
-  background-color: ${(props) => props.theme.colorGrey7};
-  border-radius: 2rem;
+  background-color: ${(props) => props.theme.activeNavLink};
+  border-radius: 1rem;
   padding: 1rem 2rem;
 
   .title {
@@ -75,17 +75,19 @@ const CardTask = styled.div`
     margin-top: 8px;
   }
 
-  .completed,
-  .incompleted {
+  .card {
     display: inline-block;
     padding: 4px 8px;
-    background-color: ${(props) => props.theme.colorDanger};
+
     border-radius: 4px;
     font-size: 16px;
     font-weight: 200;
   }
+  .incompleted {
+    background-color: ${(props) => props.theme.colorDanger};
+  }
 
   .completed {
-    background: ${(props) => props.theme.colorGreenDark};
+    background-color: ${(props) => props.theme.colorGreenDark};
   }
 `;
