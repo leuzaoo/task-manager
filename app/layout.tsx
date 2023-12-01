@@ -1,12 +1,15 @@
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider";
 import { ClerkProvider, auth } from "@clerk/nextjs";
-import { Rokkitt } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import Sidebar from "./components/sidebar";
 import type { Metadata } from "next";
 import "./globals.css";
 
-const rokkitt = Rokkitt({ subsets: ["latin"] });
+const notoSans = Noto_Sans({
+  weight: ["200", "400", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Minhas Tarefas",
@@ -33,7 +36,7 @@ export default function RootLayout({
           />
         </head>
         <body
-          className={`text-xl ${rokkitt.className}`}
+          className={`text-xl ${notoSans.className}`}
           suppressHydrationWarning={true}
         >
           <ContextProvider>

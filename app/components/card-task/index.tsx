@@ -5,10 +5,12 @@ import styled from "styled-components";
 import React from "react";
 import TaskItem from "@/app/item-task";
 import { plus } from "@/app/utils/Icons";
-import { Salsa } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 
-const salsa = Salsa({ weight: ["400"], subsets: ["latin"] });
-
+const notoSans = Noto_Sans({
+  weight: ["200", "400", "700"],
+  subsets: ["latin"],
+});
 interface Props {
   title: string;
   tasks: any[];
@@ -18,7 +20,7 @@ export default function Task({ title, tasks }: Props) {
   const { theme, isLoading } = useGlobalState();
   return (
     <TaskStyled theme={theme}>
-      <h1 className={`page__title ${salsa.className}`}>{title}</h1>
+      <h1 className={`page__title ${notoSans.className}`}>{title}</h1>
       <CreateContent />
       <div className="tasks grid">
         {tasks.map((task) => (

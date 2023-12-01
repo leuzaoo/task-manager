@@ -19,7 +19,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       const res = await axios.get("/api/tasks");
       setTasks(res.data);
-      console.log(res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
