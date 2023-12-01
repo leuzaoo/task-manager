@@ -2,7 +2,7 @@
 import { useGlobalState } from "@/app/context/globalProvider";
 import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/app/utils/Icons";
-import { useClerk } from "@clerk/nextjs";
+import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 import styled from "styled-components";
 import menu from "@/app/utils/menu";
 import Image from "next/image";
@@ -10,9 +10,16 @@ import Link from "next/link";
 
 export default function Sidebar() {
   const { signOut } = useClerk();
+  const { user } = useUser();
   const { theme } = useGlobalState();
   const router = useRouter();
   const pathname = usePathname();
+
+  const { firstName, lastName, imageUrl } = user || {
+    firstName: "",
+    lastName: "",
+    imageUrl: "",
+  };
 
   const handleClick = (link: string) => {
     router.push(link);
@@ -23,12 +30,10 @@ export default function Sidebar() {
       <div className="profile">
         <div className="profile__overlay">
           <div className="image">
-            <Image
-              width={80}
-              height={80}
-              src="/user-img.jpeg"
-              alt="User Image"
-            />
+            <Image width={80} height={80} src={imageUrl} alt="User Image" />
+          </div>
+          <div className="user__btn absolute z-20 left-0 top-0 w-full h-full">
+            <UserButton />
           </div>
           <p>Leonardo Costa</p>
         </div>
@@ -50,7 +55,10 @@ export default function Sidebar() {
           );
         })}
       </ul>
-      <button onClick={() => signOut(() => router.push("/signin"))}>
+      <button
+        className="logout__btn"
+        onClick={() => signOut(() => router.push("/signin"))}
+      >
         Sair {logout}
       </button>
     </SidebarStyled>
@@ -67,6 +75,24 @@ const SidebarStyled = styled.nav`
   flex-direction: column;
   justify-content: space-between;
   color: ${(props) => props.theme.colorGrey3};
+
+  .user__btn {
+    .cl-rootBox {
+      width: 100%;
+      height: 100%;
+
+      .cl-userButtonBox {
+        width: 100%;
+        height: 100%;
+
+        .cl-userButtonTrigger {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+        }
+      }
+    }
+  }
 
   .profile {
     margin: 1rem;
@@ -174,7 +200,7 @@ const SidebarStyled = styled.nav`
     width: 0.3rem;
   }
 
-  button {
+  .logout__btn {
     display: flex;
     align-items: center;
     gap: 12px;
