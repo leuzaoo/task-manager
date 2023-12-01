@@ -30,12 +30,14 @@ export default function Sidebar() {
       <div className="profile">
         <div className="profile__overlay">
           <div className="image">
-            <Image width={80} height={80} src={imageUrl} alt="User Image" />
+            <Image width={100} height={100} src={imageUrl} alt="User Image" />
           </div>
           <div className="user__btn absolute z-20 left-0 top-0 w-full h-full">
             <UserButton />
           </div>
-          <p>Leonardo Costa</p>
+          <p className="capitalize">
+            {firstName} {lastName}
+          </p>
         </div>
       </div>
       <ul className="nav__items">
@@ -124,7 +126,7 @@ const SidebarStyled = styled.nav`
 
       img {
         margin: 0 auto;
-        border-radius: 100%;
+        border-radius: 12px;
         transition: all 0.5s ease;
       }
     }

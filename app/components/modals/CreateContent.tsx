@@ -63,69 +63,74 @@ export default function CreateContent() {
   return (
     <form onSubmit={handleSubmit}>
       <CreateTasks theme={theme}>
-        <h1 className="text-4xl">Crie sua tarefa.</h1>
+        <div className="grid">
+          <div className="flex flex-col justify-between">
+            <div className="input__control flex flex-col">
+              <label htmlFor="title" className="mb-2">
+                Título
+              </label>
+              <input
+                className="h-12"
+                type="text"
+                id="title"
+                value={title}
+                name="title"
+                onChange={handleChange("title")}
+                placeholder="Retirar o lixo."
+              />
+            </div>
+            <div className="input__control flex gap-2">
+              <label htmlFor="date">Finalizar dia:</label>
+              <input
+                className="text-neutral-400"
+                type="date"
+                id="date"
+                value={date}
+                name="date"
+                onChange={handleChange("date")}
+              />
+            </div>
+          </div>
 
-        <div className="input__control flex flex-col">
-          <label htmlFor="title" className="text-2xl">
-            Título
-          </label>
-          <input
-            className="h-12"
-            type="text"
-            id="title"
-            value={title}
-            name="title"
-            onChange={handleChange("title")}
-            placeholder="Retirar o lixo."
-          />
+          <div className="flex flex-col">
+            <label htmlFor="description" className="mb-2">
+              Descrição
+            </label>
+            <textarea
+              id="description"
+              value={description}
+              name="description"
+              rows={4}
+              onChange={handleChange("description")}
+              placeholder="Lixo do banheiro, cozinha e quintal."
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="description">Descrição</label>
-          <textarea
-            id="description"
-            value={description}
-            name="description"
-            rows={4}
-            onChange={handleChange("description")}
-            placeholder="Lixo do banheiro, cozinha e quintal."
-          />
-        </div>
+        <div className="mt-4">
+          <div className="input__control toggler flex gap-2">
+            <label htmlFor="completed">Finalizada</label>
+            <input
+              className="w-5"
+              type="checkbox"
+              id="completed"
+              value={completed.toString()}
+              name="completed"
+              onChange={handleChange("completed")}
+            />
+          </div>
 
-        <div className="input__control flex gap-2">
-          <label htmlFor="date">Finalizar dia:</label>
-          <input
-            className="text-neutral-400"
-            type="date"
-            id="date"
-            value={date}
-            name="date"
-            onChange={handleChange("date")}
-          />
-        </div>
-
-        <div className="input__control toggler flex gap-2">
-          <label htmlFor="completed">Finalizada</label>
-          <input
-            className="w-5"
-            type="checkbox"
-            id="completed"
-            value={completed.toString()}
-            name="completed"
-            onChange={handleChange("completed")}
-          />
-        </div>
-
-        <div className="input__control toggler flex gap-2">
-          <label htmlFor="important">Importante</label>
-          <input
-            className="w-5"
-            type="checkbox"
-            id="important"
-            value={important.toString()}
-            name="important"
-            onChange={handleChange("important")}
-          />
+          <div className="input__control toggler flex gap-2 mt-4">
+            <label htmlFor="important">Importante</label>
+            <input
+              className="w-5"
+              type="checkbox"
+              id="important"
+              value={important.toString()}
+              name="important"
+              onChange={handleChange("important")}
+            />
+          </div>
         </div>
         <div className="w-full text-center bg-green-700 py-3 px-4 rounded-md mt-5">
           <button type="submit">Criar nova tarefa</button>
@@ -136,13 +141,12 @@ export default function CreateContent() {
 }
 
 const CreateTasks = styled.div`
-  max-width: 50%;
   border-radius: 1rem;
   padding: 2rem;
   background-color: ${(props) => props.theme.activeNavLink};
   margin-bottom: 40px;
 
-  .input__control {
-    margin-top: 1rem;
+  ::placeholder {
+    font-size: 16px;
   }
 `;

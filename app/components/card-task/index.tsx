@@ -21,7 +21,6 @@ export default function Task({ title, tasks }: Props) {
   return (
     <TaskStyled theme={theme}>
       <h1 className={`page__title ${notoSans.className}`}>{title}</h1>
-      <CreateContent />
       <div className="tasks grid">
         {tasks.map((task) => (
           <TaskItem

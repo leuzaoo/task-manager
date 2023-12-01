@@ -23,7 +23,7 @@ export default function TaskItem({
   isCompleted,
   id,
 }: Props) {
-  const { theme, deleteTask } = useGlobalState();
+  const { theme, deleteTask, updateTask } = useGlobalState();
 
   return (
     <CardTask theme={theme}>
@@ -32,9 +32,33 @@ export default function TaskItem({
       <p className="date">Finalizar dia: {formatDate(date)}</p>
       <div className="task__footer">
         {isCompleted ? (
-          <button className="card completed bg-green-500">Finalizado</button>
+          <button
+            className="card completed"
+            onClick={() => {
+              const task = {
+                id,
+                isCompleted: !isCompleted,
+              };
+
+              updateTask(task);
+            }}
+          >
+            Completed
+          </button>
         ) : (
-          <button className="card incompleted">Não finalizado</button>
+          <button
+            className="incomplete"
+            onClick={() => {
+              const task = {
+                id,
+                isCompleted: !isCompleted,
+              };
+
+              updateTask(task);
+            }}
+          >
+            Não finalizado
+          </button>
         )}
         <div className="buttons">
           <button className="edit">{edit}</button>
@@ -83,11 +107,16 @@ const CardTask = styled.div`
     font-size: 16px;
     font-weight: 200;
   }
-  .incompleted {
-    background-color: ${(props) => props.theme.colorDanger};
+
+  .completed,
+  .incomplete {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: ${(props) => props.theme.colorDanger};
+    border-radius: 30px;
   }
 
   .completed {
-    background-color: ${(props) => props.theme.colorGreenDark};
+    background: ${(props) => props.theme.colorGreenDark} !important;
   }
 `;
